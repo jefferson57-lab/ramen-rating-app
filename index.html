@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramen Menu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Ramen Menu</h1>
+
+    <div id="ramen-menu">
+        <img src="images/shoyu.jpg" alt="Shoyu Ramen">
+        <img src="images/naruto.jpg" alt="Miso Ramen">
+        <img src="images/nirvana.jpg" alt="Tonkotsu Ramen">
+    </div>
+
+    <div id="ramen-detail"></div>
+
+    <form id="ramen-form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="restaurant">Restaurant:</label><br>
+        <input type="text" id="restaurant" name="restaurant"><br>
+        <label for="image">Image URL:</label><br>
+        <input type="text" id="image" name="image"><br>
+        <label for="rating">Rating:</label><br>
+        <input type="number" id="rating" name="rating"><br>
+        <label for="comment">Comment:</label><br>
+        <textarea id="comment" name="comment"></textarea><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script src="index.js"></script>
+</body>
+</html>
