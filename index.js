@@ -34,3 +34,18 @@ function handleClick(event) {
         `;
     }
 }
+function editRamen(ramenId) {
+    const ramen = ramens.find((r) => r.id === ramenId);
+    if (ramen) {
+        const ramenDetail = document.getElementById("ramen-detail");
+        ramenDetail.innerHTML = `
+            <h2>${ramen.name}</h2>
+            <p>Restaurant: ${ramen.restaurant}</p>
+            <label for="editRating">Rating:</label>
+            <input type="number" id="editRating" value="${ramen.rating || ''}"><br>
+            <label for="editComment">Comment:</label><br>
+            <textarea id="editComment">${ramen.comment || ''}</textarea><br>
+            <button onclick="updateRamen(${ramen.id})">Update</button>
+        `;
+    }
+}
