@@ -49,3 +49,44 @@ function editRamen(ramenId) {
         `;
     }
 }
+
+function updateRamen(ramenId) {
+    const ramen = ramens.find((r) => r.id === ramenId);
+    if (ramen) {
+        ramen.rating = parseFloat(document.getElementById("editRating").value) || undefined;
+        ramen.comment = document.getElementById("editComment").value || undefined;
+
+        if (isNaN(ramen.rating)){
+            delete ramen.rating;
+        }
+
+        if (ramen.comment === ""){
+            delete ramen.comment;
+        }
+
+        handleClick({ target: { dataset: { id: ramen.id } } });
+    }
+}
+function addSubmitListener() {
+    const form = document.getElementById("ramen-form");
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = document.getElementById("name").value;
+        const restaurant = document.getElementById("restaurant").value;
+        const image = document.getElementById("image").value;
+        const rating = parseFloat(document.getElementById("rating").value);
+        const comment = document.getElementById("comment").value;
+
+        const newRamen = {
+            id: ramens.length + 1,
+            name: name,
+            restaurant: restaurant,
+            image: image,
+            rating: isNaN(rating) ? undefined : rating,
+            comment: comment === "" ? undefined : comment
+        };
+        ramens.push(newRamen);
+        displayRamens();
+        form.reset();
+    });
+}
