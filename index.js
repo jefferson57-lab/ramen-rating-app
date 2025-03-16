@@ -90,3 +90,13 @@ function addSubmitListener() {
         form.reset();
     });
 }
+
+function main() {
+    displayRamens();
+    addSubmitListener();
+    if (ramens.length > 0) {
+        handleClick({ target: { dataset: { id: ramens[0].id } } });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", main);
