@@ -20,8 +20,8 @@ function displayRamens() {
 }
 // callback function to display ramen details onclick
 function afterClick(event) {
-    const ramenId = parseInt(event.target.dataset.id);
-    const ramen = ramens.find((r) => r.id === ramenId);
+    const ramenId = parseInt(event.target.dataset.id); // this is the clicked ramen id
+    const ramen = ramens.find((r) => r.id === ramenId); // finds ramen object
     if (ramen) {
         const ramenDetail = document.getElementById("ramen-detail");
         ramenDetail.innerHTML = `
@@ -51,26 +51,26 @@ function editRamen(ramenId) {
 }
 
 function updateRamen(ramenId) {
-    const ramen = ramens.find((r) => r.id === ramenId);
+    const ramen = ramens.find((r) => r.id === ramenId); // find ramen
     if (ramen) {
         ramen.rating = parseFloat(document.getElementById("editRating").value) || undefined;
         ramen.comment = document.getElementById("editComment").value || undefined;
 
-        if (isNaN(ramen.rating)){
+        if (isNaN(ramen.rating)){ // delete rating if is not a number
             delete ramen.rating;
         }
 
-        if (ramen.comment === ""){
+        if (ramen.comment === ""){ // delete if comment is empty
             delete ramen.comment;
         }
 
-        afterClick({ target: { dataset: { id: ramen.id } } });
+        afterClick({ target: { dataset: { id: ramen.id } } }); // basic refresh function
     }
 }
 function addSubmitListener() {
     const form = document.getElementById("ramen-form");
     form.addEventListener("submit", (event) => {
-        event.preventDefault();
+        event.preventDefault(); // prevents the default submision
         const name = document.getElementById("name").value;
         const restaurant = document.getElementById("restaurant").value;
         const image = document.getElementById("image").value;
@@ -85,9 +85,9 @@ function addSubmitListener() {
             rating: isNaN(rating) ? undefined : rating,
             comment: comment === "" ? undefined : comment
         };
-        ramens.push(newRamen);
-        displayRamens();
-        form.reset();
+        ramens.push(newRamen); // ads new ramen to array
+        displayRamens(); // refresh ramen menu
+        form.reset(); // basic reset
     });
 }
 
@@ -95,8 +95,8 @@ function main() {
     displayRamens();
     addSubmitListener();
     if (ramens.length > 0) {
-        afterClick({ target: { dataset: { id: ramens[0].id } } });
+        afterClick({ target: { dataset: { id: ramens[0].id } } }); // first ramen  details
     }
 }
 
-document.addEventListener("DOMContentLoaded", main);
+document.addEventListener("DOMContentLoaded", main); // runs the above main function when DOM is loaded 
