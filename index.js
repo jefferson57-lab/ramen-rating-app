@@ -10,16 +10,16 @@ function displayRamens() {
     const ramenMenu = document.getElementById("ramen-menu");
     ramenMenu.innerHTML = ""; // Clear existing images
     ramens.forEach((ramen) => {
-        const img = document.createElement("img");
-        img.src = ramen.image;
-        img.alt = ramen.name;
-        img.dataset.id = ramen.id;
-        img.addEventListener("click", handleClick);
-        ramenMenu.appendChild(img);
+        const img = document.createElement("img"); // DOM manipulation to create an image element
+        img.src = ramen.image; // image src where the image is gotten from
+        img.alt = ramen.name; // image alt text
+        img.dataset.id = ramen.id; 
+        img.addEventListener("click", afterClick); // event and the callback function
+        ramenMenu.appendChild(img); // add image to the menu
     });
 }
-
-function handleClick(event) {
+// callback function to display ramen details onclick
+function afterClick(event) {
     const ramenId = parseInt(event.target.dataset.id);
     const ramen = ramens.find((r) => r.id === ramenId);
     if (ramen) {
@@ -64,7 +64,7 @@ function updateRamen(ramenId) {
             delete ramen.comment;
         }
 
-        handleClick({ target: { dataset: { id: ramen.id } } });
+        afterClick({ target: { dataset: { id: ramen.id } } });
     }
 }
 function addSubmitListener() {
@@ -95,7 +95,7 @@ function main() {
     displayRamens();
     addSubmitListener();
     if (ramens.length > 0) {
-        handleClick({ target: { dataset: { id: ramens[0].id } } });
+        afterClick({ target: { dataset: { id: ramens[0].id } } });
     }
 }
 
